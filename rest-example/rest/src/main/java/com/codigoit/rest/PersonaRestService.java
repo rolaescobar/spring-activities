@@ -70,6 +70,7 @@ public class PersonaRestService {
 
 	}
 	
+	//nueva
 	@RequestMapping(value="/personas/{nombre}",method=RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Void> actualizar(@PathVariable String nombre,@RequestBody Persona persona) {
