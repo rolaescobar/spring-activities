@@ -72,10 +72,17 @@ public class PersonaRestService {
 	
 	@RequestMapping(value="/personas/{nombre}",method=RequestMethod.PUT)
 	@ResponseBody
-	public void actualizar(@PathVariable String nombre,@RequestBody Persona persona) {
+	public ResponseEntity<Void> actualizar(@PathVariable String nombre,@RequestBody Persona persona) {
 		
 		int posicion = lista.indexOf(new Persona(nombre));
-		lista.set(posicion, persona);
+	    if(posicion !=-1) {
+	    	
+	    	lista.set(posicion, persona);
+	    	return ResponseEntity.status(HttpStatus.OK).build();
+	    }else {
+	    	lista.add(persona);
+	    	return ResponseEntity.status(HttpStatus.CREATED).build();
+	    }
 	}
 	
 }
